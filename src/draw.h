@@ -44,6 +44,7 @@ struct tb_cell* strn_cell(char* s, u16 len);
 struct tb_cell* str_cell(char* s);
 
 void draw_labels(struct term_buf* buf);
+void draw_void_logo(struct term_buf* buf);
 void draw_f_commands();
 void draw_lock_state(struct term_buf* buf);
 void draw_desktop(struct desktop* target);

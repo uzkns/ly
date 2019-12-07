@@ -259,6 +259,81 @@ void draw_labels(struct term_buf* buf) // throws
 	}
 }
 
+/* Draws a string onto the console */
+static int draw_string(int pos_x, int pos_y, uint16_t fg, uint16_t bg, char string[]) {
+    int temp_x = pos_x;
+    struct tb_cell cell;
+    cell.bg = bg;
+    cell.fg = fg;
+    cell.ch = '.';
+
+	//for each character, draw a new cell
+    for (size_t i = 0; i < strlen(string); i++) {
+        cell.ch = string[i];
+        tb_put_cell(temp_x, pos_y, &cell);
+        temp_x++;
+    }
+
+	//return the x position after the last cell (pos_x + strlen(string) basically)
+    return temp_x;
+}
+
+/* Draws the Void Linux logo in ascii art onto the console. The art ist taken from neofetch */
+void draw_void_logo(struct term_buf* buf) {
+	int pos_x = (buf->width - 45) / 2;
+	int pos_y = ((buf->height - buf->box_height) / 2) / 2 - 9;
+	draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "                __.;=====;.__");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "            _.=+==++=++=+=+===;.");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "             -=+++=+===+=+=+++++=_");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "        .     -=:``     `--==+=++==.");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "       _vi,    `            --+=++++:");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "      .uvnvi.       _._       -==+==+.");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "     .vvnvnI`    .;==|==;.     :|=||=|.");
+    
+    
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "+QmQQm");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "pvvnv; ");
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "_yYsyQQWUUQQQm #QmQ#");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, ":");
+    pos_x = draw_string(pos_x, pos_y++, 0x2E | 0x0100, 0x00, "QQQWUV$QQm.");
+
+    pos_x = (buf->width - 45) / 2;
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, " -QQWQW");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "pvvo");
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "wZ?.wQQQE");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "==<");
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "QWWQ/QWQW");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, ".");
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "QQWW");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "+: ");
+    pos_x = draw_string(pos_x, pos_y++, 0x2E | 0x0100, 0x00, "jQWQE");
+
+    pos_x = (buf->width - 45) / 2;
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "  -$QQQQmmU'  jQQQ@");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "+=<");
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "QWQQ)mQQQ");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, ".");
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "mQQQC");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "+;");
+    pos_x = draw_string(pos_x, pos_y++, 0x2E | 0x0100, 0x00, "jWQQ@'");
+
+    pos_x = (buf->width - 45) / 2;
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "   -$WQ8Y");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "nI:   ");
+    pos_x = draw_string(pos_x, pos_y, 0x2E | 0x0100, 0x00, "QWQQwgQQWV");
+    pos_x = draw_string(pos_x, pos_y, 0x1C | 0x0100, 0x00, "`");
+    pos_x = draw_string(pos_x, pos_y++, 0x2E | 0x0100, 0x00, "mWQQ.jQWQQgyyWWD!");
+
+    pos_x = (buf->width - 45) / 2;
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "     -1vvnvv.     `~+++`        ++|+++");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "      +vnvnnv,                 `-|===");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "       +vnvnvns.           .      :=-");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "        -Invnvvnsi..___..=sv=.     `");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "          +Invnvnvnnnnnnnnvvnn;.");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "            ~|Invnvnvvnvvvnnv}+`");
+    draw_string(pos_x, pos_y++, 0x1C | 0x0100, 0x00, "                -~|{*l}*|~");
+}
+
 void draw_f_commands()
 {
 	struct tb_cell* f1 = str_cell(lang.f1);

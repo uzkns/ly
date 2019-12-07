@@ -133,7 +133,7 @@ int main(int argc, char** argv)
 
 	// start termbox
 	tb_init();
-	tb_select_output_mode(TB_OUTPUT_NORMAL);
+	tb_select_output_mode(TB_OUTPUT_256);
 	tb_clear();
 
 	// init visible elements
@@ -176,6 +176,7 @@ int main(int argc, char** argv)
 			{
 				tb_clear();
 				animate(&buf);
+				draw_void_logo(&buf);
 				draw_box(&buf);
 				draw_labels(&buf);
 				draw_f_commands();
