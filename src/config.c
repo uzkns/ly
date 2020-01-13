@@ -261,14 +261,14 @@ void lang_defaults()
 void config_defaults()
 {
 	config.animate = false;
-	config.animation = 0;
+	config.animation = 0; //black
 	config.asterisk = '*';
 	config.bg = 0;
 	config.blank_box = true;
 	config.blank_password = false;
 	config.console_dev = strdup("/dev/console");
 	config.default_input = PASSWORD_INPUT;
-	config.fg = 9;
+	config.fg = 15; //white
 	config.hide_borders = false;
 	config.input_len = 34;
 	config.lang = strdup("en");
