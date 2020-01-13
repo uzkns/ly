@@ -1,4 +1,4 @@
-# Ly - a TUI display manager
+# Ly - a TUI display manager (with Void Linux artwork)
 [![CodeFactor](https://www.codefactor.io/repository/github/cylgom/ly/badge/master)](https://www.codefactor.io/repository/github/cylgom/ly/overview/master)
 ![Ly screenshot](https://user-images.githubusercontent.com/5473047/42466218-8cb53d3c-83ae-11e8-8e53-bae3669f959c.png "Ly screenshot")
 
@@ -44,7 +44,7 @@ changing the source code won't be necessary :)
 ## Cloning and Compiling
 Clone the repository
 ```
-git clone https://github.com/cylgom/ly.git
+git clone https://github.com/uzkns/ly-void-artwork.git
 ```
 
 Fetch submodules
@@ -63,7 +63,7 @@ or a terminal emulator (but desktop environments won't start)
 sudo make run
 ```
 
-Install Ly and the provided systemd service file
+Install Ly and the provided runit service file
 ```
 sudo make install
 ```
@@ -76,7 +76,7 @@ sudo systemctl enable ly.service
 If you need to switch between ttys after Ly's start you also have to
 disable getty on Ly's tty to prevent "login" from spawning on top of it
 ```
-sudo systemctl disable getty@tty2.service
+sudo rm /var/service/agetty-tty2
 ```
 
 ## Configuration
